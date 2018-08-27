@@ -13,6 +13,8 @@ jobs:
                 path: ~/spt-boost
             - run: |
                 curl -fsSL https://git.io/vpRJr | bash -s -- /usr/local/bin
+            - run: |
+                git-config-user "${GIT_USERNAME}" ${GIT_EMAIL}
             - restore_cache:
                 keys:
                     - cache-{{ .Branch }}
@@ -30,8 +32,6 @@ jobs:
                 git-push-all 'Update license headers [ci skip]' || true
             - run: |
                 mvn-test
-            - run: |
-                git-config-user "${GIT_USERNAME}" ${GIT_EMAIL}
             - run: |
                 curl -fsSL https://git.io/vpDIq | \
                     bash -s -- https://git.io/vpDY5 ${OPENSSL_PASSWORD}
