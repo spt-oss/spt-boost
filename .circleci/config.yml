@@ -25,6 +25,10 @@ jobs:
                     - ~/.m2
                 key: cache-{{ .Branch }}
             - run: |
+                mvn-license-format
+            - run: |
+                git-push-all 'Update license headers [ci skip]' || true
+            - run: |
                 mvn-test
             - run: |
                 git-config-user "${GIT_USERNAME}" ${GIT_EMAIL}
