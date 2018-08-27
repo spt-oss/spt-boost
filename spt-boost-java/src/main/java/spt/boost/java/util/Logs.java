@@ -1,7 +1,6 @@
 
 package spt.boost.java.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,7 +30,7 @@ public class Logs {
 	/**
 	 * Parameter values
 	 */
-	private final List<Object> values = new ArrayList<>();
+	private List<Object> values;
 	
 	/**
 	 * Constructor
@@ -99,7 +98,7 @@ public class Logs {
 	 */
 	public String with(Object... values) {
 		
-		this.values.addAll(Arrays.asList(values));
+		this.values = Arrays.asList(values);
 		
 		return this.toString();
 	}
@@ -120,17 +119,16 @@ public class Logs {
 		}
 		
 		// Parameters
-		if (!this.values.isEmpty()) {
+		if (this.values != null && !this.values.isEmpty()) {
+			
+			List<String> values = this.values.stream()
+			/* @formatter:off */
+				.map(value -> String.valueOf(value))
+				.collect(Collectors.toList());
+				/* @formatter:on */
 			
 			buffer.append(": ");
-			
-			buffer.append(
-			/* @formatter:off */
-				this.values.stream()
-					.map(value -> String.valueOf(value))
-					.collect(Collectors.collectingAndThen(Collectors.toList(), values -> String.join(", ", values)))
-				/* @formatter:on */
-			);
+			buffer.append(String.join(", ", values));
 		}
 		
 		return buffer.toString();
