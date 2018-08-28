@@ -26,7 +26,7 @@ public class UncheckedInterruptedException extends RuntimeException {
 	 * Constructor
 	 * 
 	 * @param message message
-	 * @param cause {@link Throwable}
+	 * @param cause {@link InterruptedException}
 	 */
 	public UncheckedInterruptedException(String message, InterruptedException cause) {
 		

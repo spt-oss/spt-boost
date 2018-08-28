@@ -23,6 +23,8 @@ import org.slf4j.LoggerFactory;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.Accessors;
 
 /**
  * Simple {@link UncaughtExceptionHandler}
@@ -37,6 +39,14 @@ public class SimpleUncaughtExceptionHandler implements UncaughtExceptionHandler 
 	private final Logger logger;
 	
 	/**
+	 * Message
+	 */
+	@Setter
+	@Accessors(chain = true)
+	@NonNull
+	private String message = "Error occurred in thread";
+	
+	/**
 	 * Constructor
 	 */
 	public SimpleUncaughtExceptionHandler() {
@@ -47,6 +57,6 @@ public class SimpleUncaughtExceptionHandler implements UncaughtExceptionHandler 
 	@Override
 	public void uncaughtException(Thread thread, Throwable e) {
 		
-		this.logger.error("Error occurred in thread", e);
+		this.logger.error(this.message, e);
 	}
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 the original author or authors.
+ * Copyright 2017 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,43 +16,50 @@
 
 package spt.boost.java.lang;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.util.StringUtils;
+
 import lombok.NonNull;
 
 /**
- * {@link Enum} utilities
+ * {@link Throwable} utilities
  */
-public class Enums {
+public class Throwables {
 	
 	/**
 	 * Constructor
 	 */
-	protected Enums() {
+	protected Throwables() {
 		
 		/* NOP */
 	}
 	
 	/**
-	 * Of
+	 * Get messages
 	 * 
-	 * @param clazz {@link Enum}
-	 * @param id ID
-	 * @param <E> {@link Enum} type
-	 * @param <I> ID type
-	 * @return {@link Enum}
-	 * @throws IllegalStateException if not found
+	 * @param cause {@link Throwable}
+	 * @return messages
 	 */
-	public static <E extends Enum<E> & Identifiable<I>, I> E of(@NonNull Class<E> clazz, @NonNull I id)
-		throws IllegalStateException {
+	public static List<String> getMessages(@NonNull Throwable cause) {
 		
-		for (E constant : clazz.getEnumConstants()) {
+		List<String> messages = new ArrayList<>();
+		
+		Throwable child = cause;
+		
+		while (child != null) {
 			
-			if (constant.getId().equals(id)) {
+			String message = child.getMessage();
+			
+			if (StringUtils.hasText(message)) {
 				
-				return constant;
+				messages.add(message);
 			}
+			
+			child = child.getCause();
 		}
 		
-		throw new IllegalStateException(
-			String.format("Enum not found: %s, %s", clazz.getCanonicalName(), String.valueOf(id)));
+		return messages;
 	}
 }

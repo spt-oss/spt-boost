@@ -134,7 +134,7 @@ public class Logs {
 		}
 		
 		// Parameters
-		if (this.values != null && !this.values.isEmpty()) {
+		if (this.values != null) {
 			
 			List<String> values = this.values.stream()
 			/* @formatter:off */
