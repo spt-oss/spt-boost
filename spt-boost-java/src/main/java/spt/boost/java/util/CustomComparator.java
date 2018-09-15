@@ -23,15 +23,13 @@ import java.util.UUID;
 
 /**
  * Custom {@link Comparator}
- * 
- * @see Comparator
  */
-public class Comparator2 {
+public class CustomComparator {
 	
 	/**
 	 * Constructor
 	 */
-	protected Comparator2() {
+	protected CustomComparator() {
 		
 		/* NOP */
 	}

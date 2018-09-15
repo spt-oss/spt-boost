@@ -25,16 +25,13 @@ import lombok.NonNull;
 
 /**
  * Custom {@link Collections}
- * 
- * @see Collections
- * @see "com.google.common.collect.Collections2"
  */
-public class Collections3 {
+public class CustomCollections {
 	
 	/**
 	 * Constructor
 	 */
-	protected Collections3() {
+	protected CustomCollections() {
 		
 		/* NOP */
 	}
