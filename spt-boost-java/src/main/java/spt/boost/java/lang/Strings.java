@@ -19,40 +19,37 @@ package spt.boost.java.lang;
 import lombok.NonNull;
 
 /**
- * {@link Enum} utilities
+ * {@link String} utilities
  */
-public class Enums {
+public class Strings {
 	
 	/**
 	 * Constructor
 	 */
-	protected Enums() {
+	protected Strings() {
 		
 		/* NOP */
 	}
 	
 	/**
-	 * Get constant
+	 * Count
 	 * 
-	 * @param clazz {@link Class}: {@link Enum} and {@link Identifiable}
-	 * @param id ID
-	 * @param <E> {@link Enum} type
-	 * @param <I> ID type
-	 * @return {@link Enum}
-	 * @throws IllegalStateException if not found
+	 * @param text text
+	 * @param keyword keyword
+	 * @return count
 	 */
-	public static <E extends Enum<E> & Identifiable<I>, I> E getConstant(@NonNull Class<E> clazz, @NonNull I id)
-		throws IllegalStateException {
+	public static int count(@NonNull String text, @NonNull String keyword) {
 		
-		for (E constant : clazz.getEnumConstants()) {
+		int count = 0;
+		int index = 0;
+		
+		while (text.indexOf(keyword, index) != -1) {
 			
-			if (constant.getId().equals(id)) {
-				
-				return constant;
-			}
+			index = text.indexOf(keyword, index) + keyword.length();
+			
+			count++;
 		}
 		
-		throw new IllegalStateException(
-			String.format("Constant not found: %s, %s", clazz.getCanonicalName(), String.valueOf(id)));
+		return count;
 	}
 }

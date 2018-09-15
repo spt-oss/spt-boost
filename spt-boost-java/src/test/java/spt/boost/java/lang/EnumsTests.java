@@ -30,19 +30,19 @@ import lombok.Getter;
 public class EnumsTests {
 	
 	/**
-	 * {@link Enums#of(Class, Object)}
+	 * {@link Enums#getConstant(Class, Object)}
 	 */
 	@Test
-	public void of() {
+	public void getConstant() {
 		
 		for (ExampleEnum value : ExampleEnum.values()) {
 			
-			assertThat(Enums.of(ExampleEnum.class, value.getId())).isEqualTo(value);
+			assertThat(Enums.getConstant(ExampleEnum.class, value.getId())).isEqualTo(value);
 		}
 		
 		try {
 			
-			Enums.of(ExampleEnum.class, 0L);
+			Enums.getConstant(ExampleEnum.class, 0L);
 			
 			fail();
 		}

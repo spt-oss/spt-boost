@@ -16,21 +16,24 @@
 
 package spt.boost.java.util;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import org.slf4j.Logger;
-import org.slf4j.helpers.MessageFormatter;
+import java.util.regex.Pattern;
 
 import lombok.EqualsAndHashCode;
 import lombok.NonNull;
+import spt.boost.java.lang.Strings;
 
 /**
- * Log message builder for {@link Logger} and {@link Exception}
+ * Log message builder for logger and {@link Exception}
  */
 @EqualsAndHashCode
 public class Logs {
+	
+	/**
+	 * Bind
+	 */
+	private static final String BIND = "{}";
 	
 	/**
 	 * Message
@@ -38,25 +41,18 @@ public class Logs {
 	private final String message;
 	
 	/**
-	 * Binding variables
+	 * Values
 	 */
-	private final List<Object> binds;
-	
-	/**
-	 * Parameter values
-	 */
-	private List<Object> values;
+	private final List<String> values = new ArrayList<>();
 	
 	/**
 	 * Constructor
 	 * 
 	 * @param message {@link #message}
-	 * @param binds {@link #binds}
 	 */
-	protected Logs(String message, Object... binds) {
+	protected Logs(@NonNull String message) {
 		
 		this.message = message;
-		this.binds = Arrays.asList(binds);
 	}
 	
 	/**
@@ -65,44 +61,9 @@ public class Logs {
 	 * @param message {@link #message}
 	 * @return {@link Logs}
 	 */
-	public static Logs of(String message) {
-		
-		return new Logs(message);
-	}
-	
-	/**
-	 * Of
-	 * 
-	 * @param message {@link #message}
-	 * @param binds {@link #binds}
-	 * @return {@link Logs}
-	 */
-	public static Logs of(String message, Object... binds) {
-		
-		return new Logs(message, binds);
-	}
-	
-	/**
-	 * Of
-	 * 
-	 * @param message {@link #message}
-	 * @return {@link Logs}
-	 */
-	public static Logs of(@NonNull StringBuilder message) {
+	public static Logs of(@NonNull CharSequence message) {
 		
 		return new Logs(message.toString());
-	}
-	
-	/**
-	 * Of
-	 * 
-	 * @param message {@link #message}
-	 * @param binds {@link #binds}
-	 * @return {@link Logs}
-	 */
-	public static Logs of(@NonNull StringBuilder message, Object... binds) {
-		
-		return new Logs(message.toString(), binds);
 	}
 	
 	/**
@@ -111,9 +72,12 @@ public class Logs {
 	 * @param values {@link #values}
 	 * @return {@link Logs}
 	 */
-	public String with(Object... values) {
+	public String with(@NonNull Object... values) {
 		
-		this.values = Arrays.asList(values);
+		for (Object value : values) {
+			
+			this.values.add(String.valueOf(value));
+		}
 		
 		return this.toString();
 	}
@@ -121,12 +85,19 @@ public class Logs {
 	@Override
 	public String toString() {
 		
+		int bindCount = Strings.count(this.message, BIND);
+		
+		if (this.values.size() < bindCount) {
+			
+			throw new IllegalStateException(String.format("Invalid bind count: %d", bindCount));
+		}
+		
+		// Message and binds
 		StringBuilder buffer = new StringBuilder();
 		
-		// Binding variables
-		if (!this.binds.isEmpty()) {
+		if (0 < bindCount) {
 			
-			buffer.append(MessageFormatter.arrayFormat(this.message, this.binds.toArray()).getMessage());
+			buffer.append(String.format(this.message.replaceAll(Pattern.quote(BIND), "%s"), this.values.toArray()));
 		}
 		else {
 			
@@ -134,13 +105,9 @@ public class Logs {
 		}
 		
 		// Parameters
-		if (this.values != null) {
-			
-			List<String> values = this.values.stream()
-			/* @formatter:off */
-				.map(value -> String.valueOf(value))
-				.collect(Collectors.toList());
-				/* @formatter:on */
+		List<String> values = this.values.subList(bindCount, this.values.size());
+		
+		if (0 < values.size()) {
 			
 			buffer.append(": ");
 			buffer.append(String.join(", ", values));

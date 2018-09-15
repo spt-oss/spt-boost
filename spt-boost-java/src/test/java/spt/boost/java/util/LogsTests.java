@@ -18,6 +18,7 @@ package spt.boost.java.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -26,7 +27,7 @@ import org.junit.Test;
 public class LogsTests {
 	
 	/**
-	 * {@link Logs#of(String)} etc.
+	 * {@link Logs#of(CharSequence)} etc.
 	 */
 	@Test
 	public void of() {
@@ -43,8 +44,19 @@ public class LogsTests {
 	@Test
 	public void with() {
 		
-		assertThat(Logs.of("with {}-{} {}", null, 1).with("b1")).isEqualTo("with null-1 {}: b1");
-		assertThat(Logs.of("with {} {}", null, 1).with("b2")).isEqualTo("with null 1: b2");
-		assertThat(Logs.of("with {}", 1).with("b3", 2)).isEqualTo("with 1: b3, 2");
+		assertThat(Logs.of("with {} {} {}").with(null, 1, "b1")).isEqualTo("with null 1 b1");
+		assertThat(Logs.of("with {} {}").with(null, 1, "b2")).isEqualTo("with null 1: b2");
+		assertThat(Logs.of("with {}").with(null, 1, "b3")).isEqualTo("with null: 1, b3");
+		
+		try {
+			
+			Logs.of("with {} {} {} {}").with(null, 1, "b4");
+			
+			Assert.fail();
+		}
+		catch (IllegalStateException e) {
+			
+			/* NOP */
+		}
 	}
 }
