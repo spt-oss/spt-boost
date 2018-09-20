@@ -57,6 +57,19 @@ public class Pages {
 	}
 	
 	/**
+	 * Fix TODO set on parser
+	 * 
+	 * @param pageable {@link Pageable}
+	 * @param size {@link Pageable#getPageSize()}
+	 * @param total {@link Page#getTotalElements()}
+	 * @return {@link Pageable}
+	 */
+	public static Pageable fix(@NonNull Pageable pageable, int size, long total) {
+		
+		return fix(PageRequest.of(pageable.getPageNumber(), size), total);
+	}
+	
+	/**
 	 * Fix
 	 * 
 	 * @param page {@link Page}
