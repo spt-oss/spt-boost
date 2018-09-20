@@ -18,6 +18,7 @@
 	<inceptionYear>2018</inceptionYear>
 
 	<modules>
+		<module>spt-boost-data</module>
 		<module>spt-boost-java</module>
 	</modules>
 
