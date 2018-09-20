@@ -28,11 +28,17 @@
 	</scm>
 
 	<properties>
+		<spt-boost.version>0.1.0-SNAPSHOT</spt-boost.version>
 		<spt-checkstyle.version>8.12.0</spt-checkstyle.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
+			<dependency>
+				<groupId>com.github.spt-oss</groupId>
+				<artifactId>spt-boost-java</artifactId>
+				<version>${spt-boost.version}</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 
