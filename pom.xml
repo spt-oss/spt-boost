@@ -9,7 +9,7 @@
 		<version>2.0.5.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>spt-boost</artifactId>
+	<artifactId>spt-boost-parent</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
