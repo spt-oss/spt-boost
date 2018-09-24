@@ -5,8 +5,8 @@
 
 	<parent>
 		<groupId>com.github.spt-oss</groupId>
-		<artifactId>spt-parent</artifactId>
-		<version>2.0.5.0</version>
+		<artifactId>spring-boot-parent</artifactId>
+		<version>2.0.5.1-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>spt-boost</artifactId>
@@ -30,15 +30,25 @@
 
 	<properties>
 		<spt-boost.version>0.1.0-SNAPSHOT</spt-boost.version>
-		<spt-checkstyle.version>8.12.0</spt-checkstyle.version>
+		<jsoup-plus.version>1.11.3.0-SNAPSHOT</jsoup-plus.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
 				<groupId>com.github.spt-oss</groupId>
+				<artifactId>spt-boost-data</artifactId>
+				<version>${spt-boost.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.spt-oss</groupId>
 				<artifactId>spt-boost-java</artifactId>
 				<version>${spt-boost.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.spt-oss</groupId>
+				<artifactId>jsoup-plus</artifactId>
+				<version>${jsoup-plus.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
@@ -46,32 +56,13 @@
 	<repositories>
 		<repository>
 			<id>central</id>
-			<url>http://repo.maven.apache.org/maven2</url>
+			<url>https://repo.maven.apache.org/maven2</url>
 		</repository>
 		<repository>
 			<id>sonatype</id>
 			<url>https://oss.sonatype.org/content/groups/staging</url>
 		</repository>
 	</repositories>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-checkstyle-plugin</artifactId>
-				<configuration>
-					<configLocation>spt/checkstyle/checks.xml</configLocation>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>com.github.spt-oss</groupId>
-						<artifactId>spt-checkstyle</artifactId>
-						<version>${spt-checkstyle.version}</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-		</plugins>
-	</build>
 
 	<profiles>
 		<profile>
