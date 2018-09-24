@@ -20,6 +20,7 @@
 	<modules>
 		<module>spt-boost-data</module>
 		<module>spt-boost-java</module>
+		<module>spt-boost-web</module>
 	</modules>
 
 	<scm>
@@ -43,6 +44,11 @@
 			<dependency>
 				<groupId>com.github.spt-oss</groupId>
 				<artifactId>spt-boost-java</artifactId>
+				<version>${spt-boost.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.spt-oss</groupId>
+				<artifactId>spt-boost-web</artifactId>
 				<version>${spt-boost.version}</version>
 			</dependency>
 			<dependency>
