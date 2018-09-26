@@ -59,7 +59,7 @@
 			</dependency>
 			<dependency>
 				<groupId>com.github.spt-oss</groupId>
-				<artifactId>jsoup-plus</artifactId>
+				<artifactId>jsoup</artifactId>
 				<version>${jsoup-plus.version}</version>
 			</dependency>
 		</dependencies>
