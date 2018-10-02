@@ -17,6 +17,7 @@
 package spt.boost.java.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -72,7 +73,18 @@ public class Logs {
 	 * @param values {@link #values}
 	 * @return {@link Logs}
 	 */
-	public String with(@NonNull Object... values) {
+	public String with(Object... values) {
+		
+		return this.with(Arrays.asList(values));
+	}
+	
+	/**
+	 * With
+	 * 
+	 * @param values {@link #values}
+	 * @return {@link Logs}
+	 */
+	public String with(@NonNull List<Object> values) {
 		
 		for (Object value : values) {
 			
