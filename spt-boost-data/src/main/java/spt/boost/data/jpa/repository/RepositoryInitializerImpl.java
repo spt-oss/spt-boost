@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package spt.boost.data.repository;
+package spt.boost.data.jpa.repository;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

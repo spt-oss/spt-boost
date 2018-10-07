@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package spt.boost.web.servlet.config;
+package spt.boost.web.servlet;
 
 import org.springframework.core.MethodParameter;
 import org.springframework.data.domain.Sort;

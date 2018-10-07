@@ -14,19 +14,15 @@
  * limitations under the License.
  */
 
-package spt.boost.data.repository;
-
-import org.springframework.dao.DataAccessException;
+package spt.boost.data.jpa.repository;
 
 /**
- * Repository initializer
+ * Initializable repository
  */
-public interface RepositoryInitializer {
+public interface InitializableRepository {
 	
 	/**
 	 * Initialize
-	 * 
-	 * @throws DataAccessException if failed to initialize
 	 */
-	void initialize() throws DataAccessException;
+	void initialize();
 }

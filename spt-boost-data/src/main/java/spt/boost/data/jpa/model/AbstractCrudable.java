@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package spt.boost.data.persistence;
+package spt.boost.data.jpa.model;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
