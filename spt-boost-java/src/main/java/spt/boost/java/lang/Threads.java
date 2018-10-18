@@ -16,6 +16,8 @@
 
 package spt.boost.java.lang;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.time.Duration;
 
 import lombok.NonNull;
@@ -24,6 +26,23 @@ import lombok.NonNull;
  * {@link Thread} utilities
  */
 public class Threads {
+	
+	/**
+	 * Random
+	 */
+	private static final SecureRandom RANDOM;
+	
+	static {
+		
+		try {
+			
+			RANDOM = SecureRandom.getInstanceStrong();
+		}
+		catch (NoSuchAlgorithmException e) {
+			
+			throw new IllegalStateException("Failed to instantiate random", e);
+		}
+	}
 	
 	/**
 	 * Constructor
@@ -60,5 +79,30 @@ public class Threads {
 			
 			throw new UncheckedInterruptedException("Thread interrupted", e);
 		}
+	}
+	
+	/**
+	 * Sleep
+	 * 
+	 * @param minDuration min {@link Duration}
+	 * @param maxDuration max {@link Duration}
+	 * @throws UncheckedInterruptedException if thread interrupted
+	 */
+	public static void sleep(@NonNull Duration minDuration, @NonNull Duration maxDuration)
+		throws UncheckedInterruptedException {
+		
+		sleep(minDuration.toMillis(), maxDuration.toMillis());
+	}
+	
+	/**
+	 * Sleep
+	 * 
+	 * @param minMillis min millis
+	 * @param maxMillis max millis
+	 * @throws UncheckedInterruptedException if thread interrupted
+	 */
+	public static void sleep(long minMillis, long maxMillis) throws UncheckedInterruptedException {
+		
+		sleep(minMillis + RANDOM.nextInt((int) (maxMillis - minMillis)));
 	}
 }

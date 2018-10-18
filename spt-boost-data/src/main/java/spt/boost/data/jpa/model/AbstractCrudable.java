@@ -17,6 +17,7 @@
 package spt.boost.data.jpa.model;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.persistence.MappedSuperclass;
@@ -49,19 +50,22 @@ public abstract class AbstractCrudable implements Crudable {
 	/**
 	 * {@link #getCreationDate()}
 	 */
-	@Setter(AccessLevel.PROTECTED)
 	private LocalDateTime creationDate;
 	
 	/**
 	 * {@link #getModificationDate()}
 	 */
-	@Setter(AccessLevel.PROTECTED)
 	private LocalDateTime modificationDate;
+	
+	/**
+	 * Initial {@link #modificationDate}
+	 */
+	@Transient
+	private LocalDateTime initialModificationDate;
 	
 	/**
 	 * {@link #getVersion()}
 	 */
-	@Setter(AccessLevel.PROTECTED)
 	@Version
 	private Long version;
 	
@@ -72,6 +76,7 @@ public abstract class AbstractCrudable implements Crudable {
 	protected void postLoad() {
 		
 		this.setPersistent(true);
+		this.setInitialModificationDate(this.modificationDate);
 	}
 	
 	/**
@@ -93,6 +98,9 @@ public abstract class AbstractCrudable implements Crudable {
 	@PreUpdate
 	protected void preUpdate() {
 		
-		this.setModificationDate(Optional.ofNullable(this.modificationDate).orElse(LocalDateTime.now()));
+		if (Objects.equals(this.modificationDate, this.initialModificationDate)) {
+			
+			this.setModificationDate(LocalDateTime.now());
+		}
 	}
 }
