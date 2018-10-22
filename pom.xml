@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.github.spt-oss</groupId>
 		<artifactId>spring-boot-parent</artifactId>
-		<version>2.0.5.2-SNAPSHOT</version>
+		<version>2.0.6.0-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>spt-boost-parent</artifactId>
@@ -32,7 +32,6 @@
 
 	<properties>
 		<spt-boost.version>0.1.0-SNAPSHOT</spt-boost.version>
-		<jsoup-plus.version>1.11.3.0-SNAPSHOT</jsoup-plus.version>
 	</properties>
 
 	<dependencyManagement>
@@ -56,11 +55,6 @@
 				<groupId>com.github.spt-oss</groupId>
 				<artifactId>spt-boost-web</artifactId>
 				<version>${spt-boost.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.github.spt-oss</groupId>
-				<artifactId>jsoup</artifactId>
-				<version>${jsoup-plus.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
