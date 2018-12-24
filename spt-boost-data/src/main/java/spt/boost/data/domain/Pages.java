@@ -16,6 +16,8 @@
 
 package spt.boost.data.domain;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
@@ -70,16 +72,28 @@ public class Pages {
 	}
 	
 	/**
-	 * Fix
+	 * Fix {@link Page#getContent()}
+	 * 
+	 * @param page {@link Page}
+	 * @param content {@link Page#getContent()}
+	 * @param <T> content type
+	 * @return {@link Pageable}
+	 */
+	public static <T> Page<T> fixContent(@NonNull Page<?> page, List<T> content) {
+		
+		return new PageImpl<>(content, page.getPageable(), page.getTotalElements());
+	}
+	
+	/**
+	 * Fix {@link Page#getTotalElements()}
 	 * 
 	 * @param page {@link Page}
 	 * @param maxTotal max {@link Page#getTotalElements()}
 	 * @param <T> content type
 	 * @return {@link Pageable}
 	 */
-	public static <T> Page<T> fix(@NonNull Page<T> page, long maxTotal) {
+	public static <T> Page<T> fixTotalElements(@NonNull Page<T> page, long maxTotal) {
 		
-		// Fix total
 		long total = page.getTotalElements();
 		
 		if (maxTotal < total) {
