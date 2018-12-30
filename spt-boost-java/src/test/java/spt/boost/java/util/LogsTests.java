@@ -18,7 +18,6 @@ package spt.boost.java.util;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 /**
@@ -27,36 +26,13 @@ import org.junit.Test;
 public class LogsTests {
 	
 	/**
-	 * {@link Logs#of(CharSequence)} etc.
+	 * {@link Logs#format(String, Object...)}
 	 */
 	@Test
-	public void of() {
+	public void format() {
 		
-		String name = LogsTests.class.getName();
-		
-		assertThat(Logs.of(name)).isEqualTo(new Logs(name));
-		assertThat(Logs.of(new StringBuilder(name).append(name))).isEqualTo(new Logs(name + name));
-	}
-	
-	/**
-	 * {@link Logs#with(Object...)}
-	 */
-	@Test
-	public void with() {
-		
-		assertThat(Logs.of("with {} {} {}").with(null, 1, "b1")).isEqualTo("with null 1 b1");
-		assertThat(Logs.of("with {} {}").with(null, 1, "b2")).isEqualTo("with null 1: b2");
-		assertThat(Logs.of("with {}").with(null, 1, "b3")).isEqualTo("with null: 1, b3");
-		
-		try {
-			
-			Logs.of("with {} {} {} {}").with(null, 1, "b4");
-			
-			Assert.fail();
-		}
-		catch (IllegalStateException e) {
-			
-			/* NOP */
-		}
+		assertThat(Logs.format("log: {} {} {}", 1, "a", new Exception())).isEqualTo("log: 1 a java.lang.Exception");
+		assertThat(Logs.format("log: {} {}", 2, "b")).isEqualTo("log: 2 b");
+		assertThat(Logs.format("log: {}", null, 1)).isEqualTo("log: null");
 	}
 }

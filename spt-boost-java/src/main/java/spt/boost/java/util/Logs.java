@@ -16,115 +16,30 @@
 
 package spt.boost.java.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.regex.Pattern;
-
-import lombok.EqualsAndHashCode;
-import lombok.NonNull;
-import spt.boost.java.lang.Strings;
+import org.slf4j.helpers.MessageFormatter;
 
 /**
- * Log message builder for logger and {@link Exception}
+ * Log message utilities for {@link org.slf4j.Logger} and {@link Exception}
  */
-@EqualsAndHashCode
 public class Logs {
 	
 	/**
-	 * Bind
-	 */
-	private static final String BIND = "{}";
-	
-	/**
-	 * Message
-	 */
-	private final String message;
-	
-	/**
-	 * Values
-	 */
-	private final List<String> values = new ArrayList<>();
-	
-	/**
 	 * Constructor
-	 * 
-	 * @param message {@link #message}
 	 */
-	protected Logs(@NonNull String message) {
+	protected Logs() {
 		
-		this.message = message;
+		/* NOP */
 	}
 	
 	/**
-	 * Of
+	 * Format
 	 * 
-	 * @param message {@link #message}
-	 * @return {@link Logs}
+	 * @param message message
+	 * @param arguments arguments
+	 * @return log
 	 */
-	public static Logs of(@NonNull CharSequence message) {
+	public static String format(String message, Object... arguments) {
 		
-		return new Logs(message.toString());
-	}
-	
-	/**
-	 * With
-	 * 
-	 * @param values {@link #values}
-	 * @return {@link Logs}
-	 */
-	public String with(Object... values) {
-		
-		return this.with(Arrays.asList(values));
-	}
-	
-	/**
-	 * With
-	 * 
-	 * @param values {@link #values}
-	 * @return {@link Logs}
-	 */
-	public String with(@NonNull List<Object> values) {
-		
-		for (Object value : values) {
-			
-			this.values.add(String.valueOf(value));
-		}
-		
-		return this.toString();
-	}
-	
-	@Override
-	public String toString() {
-		
-		int bindCount = Strings.count(this.message, BIND);
-		
-		if (this.values.size() < bindCount) {
-			
-			throw new IllegalStateException(String.format("Invalid bind count: %d", bindCount));
-		}
-		
-		// Message and binds
-		StringBuilder buffer = new StringBuilder();
-		
-		if (0 < bindCount) {
-			
-			buffer.append(String.format(this.message.replaceAll(Pattern.quote(BIND), "%s"), this.values.toArray()));
-		}
-		else {
-			
-			buffer.append(this.message);
-		}
-		
-		// Parameters
-		List<String> values = this.values.subList(bindCount, this.values.size());
-		
-		if (0 < values.size()) {
-			
-			buffer.append(": ");
-			buffer.append(String.join(", ", values));
-		}
-		
-		return buffer.toString();
+		return MessageFormatter.arrayFormat(message, arguments, null).getMessage();
 	}
 }

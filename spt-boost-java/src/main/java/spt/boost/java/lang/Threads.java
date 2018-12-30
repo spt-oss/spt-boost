@@ -84,14 +84,13 @@ public class Threads {
 	/**
 	 * Sleep
 	 * 
-	 * @param minDuration min {@link Duration}
-	 * @param maxDuration max {@link Duration}
+	 * @param min min
+	 * @param max max
 	 * @throws UncheckedInterruptedException if thread interrupted
 	 */
-	public static void sleep(@NonNull Duration minDuration, @NonNull Duration maxDuration)
-		throws UncheckedInterruptedException {
+	public static void sleep(@NonNull Duration min, @NonNull Duration max) throws UncheckedInterruptedException {
 		
-		sleep(minDuration.toMillis(), maxDuration.toMillis());
+		sleep(min.toMillis(), max.toMillis());
 	}
 	
 	/**
