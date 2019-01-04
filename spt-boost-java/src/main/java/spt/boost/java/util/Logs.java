@@ -19,7 +19,7 @@ package spt.boost.java.util;
 import org.slf4j.helpers.MessageFormatter;
 
 /**
- * Log message utilities for {@link org.slf4j.Logger} and {@link Exception}
+ * Log utilities: {@link org.slf4j.Logger} and {@link Exception}
  */
 public class Logs {
 	

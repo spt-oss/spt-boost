@@ -37,7 +37,7 @@
 		<spring-boot-plus.version>2.0.7.0-SNAPSHOT</spring-boot-plus.version>
 		<spring-data-commons.version>2.0.12.RELEASE</spring-data-commons.version>
 		<spring-framework.version>5.0.11.RELEASE</spring-framework.version>
-		<spt-boost.version>0.1.0-SNAPSHOT</spt-boost.version>
+		<spt-boost.version>2.0.7.0-SNAPSHOT</spt-boost.version>
 		<spt-checkstyle.version>8.15.0</spt-checkstyle.version>
 	</properties>
 
