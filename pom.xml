@@ -19,6 +19,7 @@
 	<inceptionYear>2018</inceptionYear>
 
 	<modules>
+		<module>spt-gear-app</module>
 		<module>spt-gear-data</module>
 		<module>spt-gear-data-jpa</module>
 		<module>spt-gear-java</module>
@@ -46,6 +47,11 @@
 				<version>${spring-boot-plus.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>com.github.spt-oss</groupId>
+				<artifactId>spt-gear-app</artifactId>
+				<version>${spt-gear.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.spt-oss</groupId>
