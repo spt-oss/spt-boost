@@ -9,31 +9,32 @@
 		<version>8.0.1-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>spt-boost-parent</artifactId>
+	<artifactId>spt-gear-parent</artifactId>
 	<version>2.0.7.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
-	<name>SPT Boost</name>
-	<description>Custom libraries to boost application development</description>
-	<url>https://github.com/spt-oss/spt-boost</url>
+	<name>SPT Gear</name>
+	<description>Custom libraries for application development</description>
+	<url>https://github.com/spt-oss/spt-gear</url>
 	<inceptionYear>2018</inceptionYear>
 
 	<modules>
-		<module>spt-boost-data</module>
-		<module>spt-boost-java</module>
-		<module>spt-boost-web</module>
+		<module>spt-gear-data</module>
+		<module>spt-gear-data-jpa</module>
+		<module>spt-gear-java</module>
+		<module>spt-gear-web</module>
 	</modules>
 
 	<scm>
-		<url>https://github.com/spt-oss/spt-boost/tree/master</url>
-		<connection>scm:git:git@github.com:spt-oss/spt-boost.git</connection>
+		<url>https://github.com/spt-oss/spt-gear/tree/master</url>
+		<connection>scm:git:git@github.com:spt-oss/spt-gear.git</connection>
 		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
 		<spring-boot.version>2.0.7.RELEASE</spring-boot.version>
 		<spring-boot-plus.version>2.0.7.1-SNAPSHOT</spring-boot-plus.version>
-		<spt-boost.version>2.0.7.0-SNAPSHOT</spt-boost.version>
+		<spt-gear.version>2.0.7.0-SNAPSHOT</spt-gear.version>
 		<spt-checkstyle.version>8.15.0</spt-checkstyle.version>
 	</properties>
 
@@ -48,18 +49,23 @@
 			</dependency>
 			<dependency>
 				<groupId>com.github.spt-oss</groupId>
-				<artifactId>spt-boost-data</artifactId>
-				<version>${spt-boost.version}</version>
+				<artifactId>spt-gear-data</artifactId>
+				<version>${spt-gear.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.spt-oss</groupId>
-				<artifactId>spt-boost-java</artifactId>
-				<version>${spt-boost.version}</version>
+				<artifactId>spt-gear-data-jpa</artifactId>
+				<version>${spt-gear.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.github.spt-oss</groupId>
-				<artifactId>spt-boost-web</artifactId>
-				<version>${spt-boost.version}</version>
+				<artifactId>spt-gear-java</artifactId>
+				<version>${spt-gear.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.spt-oss</groupId>
+				<artifactId>spt-gear-web</artifactId>
+				<version>${spt-gear.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
