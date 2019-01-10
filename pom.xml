@@ -22,6 +22,7 @@
 		<module>spt-gear-app</module>
 		<module>spt-gear-data</module>
 		<module>spt-gear-data-jpa</module>
+		<module>spt-gear-dom</module>
 		<module>spt-gear-java</module>
 		<module>spt-gear-json</module>
 		<module>spt-gear-web</module>
@@ -68,6 +69,11 @@
 			<dependency>
 				<groupId>com.github.spt-oss</groupId>
 				<artifactId>spt-gear-data-jpa</artifactId>
+				<version>${spt-gear.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.github.spt-oss</groupId>
+				<artifactId>spt-gear-dom</artifactId>
 				<version>${spt-gear.version}</version>
 			</dependency>
 			<dependency>
