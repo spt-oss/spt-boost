@@ -10,7 +10,7 @@
 		<relativePath>..</relativePath>
 	</parent>
 
-	<artifactId>spt-gear-java</artifactId>
+	<artifactId>spt-gear-json</artifactId>
 	<packaging>jar</packaging>
 
 	<scm>
@@ -19,16 +19,12 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.jsoup</groupId>
-			<artifactId>jsoup</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-json</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-aop</artifactId>
+			<groupId>com.github.spt-oss</groupId>
+			<artifactId>spt-gear-java</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
